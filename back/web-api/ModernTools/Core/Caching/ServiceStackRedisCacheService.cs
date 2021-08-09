@@ -10,14 +10,14 @@ using System.Text;
 
 namespace Core.Caching
 {
-    public class RedisCacheService : IRedisCacheService
+    public class ServiceStackRedisCacheService : IRedisCacheService
     {
         #region Fields
         public readonly IOptions<ModernToolsConfig> _modernToolsConfig;
         private readonly RedisEndpoint _conf = null;
         #endregion
 
-        public RedisCacheService(IOptions<ModernToolsConfig> modernToolsConfig)
+        public ServiceStackRedisCacheService(IOptions<ModernToolsConfig> modernToolsConfig)
         {
             _modernToolsConfig = modernToolsConfig;
             _conf = new RedisEndpoint
