@@ -9,7 +9,7 @@ namespace Core.Caching
         T Get<T>(string key);
         IList<T> GetAll<T>(string key);
         void Set(string key, object data);
-        void Set(string key, object data, DateTime time);
+        void Set(string key, object data, DateTime expireAt);
         void SetAll<T>(IDictionary<string,T> values);
         bool IsSet(string key);
         void Remove(string key);

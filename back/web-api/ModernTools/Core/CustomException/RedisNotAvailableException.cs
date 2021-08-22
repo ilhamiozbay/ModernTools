@@ -2,7 +2,7 @@
 
 namespace Core.CustomException
 {
-public    class RedisNotAvailableException:Exception
+    public class RedisNotAvailableException : Exception
     {
         private string _errorCode = "431";
 

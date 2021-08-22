@@ -72,7 +72,7 @@ namespace Core.Caching
             Set(key, data, DateTime.Now.AddMinutes(_modernToolsConfig.Value.RedisTimeout));
         }
 
-        public void Set(string key, object data, DateTime time)
+        public void Set(string key, object data, DateTime expireAt)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace Core.Caching
                         PreserveReferencesHandling =
                         PreserveReferencesHandling.Objects
                     });
-                    client.Set(key, Encoding.UTF8.GetBytes(dataSerialize), time);
+                    client.Set(key, Encoding.UTF8.GetBytes(dataSerialize), expireAt);
                 }
             }
             catch
