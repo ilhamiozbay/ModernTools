@@ -5,6 +5,8 @@ using MEO = Microsoft.Extensions.Options;
 
 namespace Core.ElasticSearch
 {
+    //ElasticSearch Client'ın Index'den bağımsız 1 seferlik Singelton ayağa kaldırıldığı sınıf. 
+    //Startup.cs=> services.AddSingleton<ElasticClientProvider>();
     public class ElasticClientProvider
     {
         public ElasticClient ElasticClient { get; }
@@ -30,6 +32,7 @@ namespace Core.ElasticSearch
             return new ElasticClient(connectionSettings);
         }
 
+        //Bu method ile Index ile ElasticClient ayağa kaldırılır.
         private ElasticClient CreateClientWithIndex(string defaultIndex)
         {
             var connectionSettings = new ConnectionSettings(new Uri(ElasticSearchHost))

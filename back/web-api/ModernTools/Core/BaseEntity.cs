@@ -5,12 +5,10 @@ namespace Core
 {
     public class BaseEntity
     {
-        private DateTime _dateTime;
-
+        //private DateTime dateTime;
+        //[NotMapped]
+        //public DateTime UsedTime { get { this.dateTime = DateTime.Now; return dateTime; } set { } }
         [NotMapped]
-        public DateTime UsedTime { get {
-                _dateTime = DateTime.Now;
-                return _dateTime;
-            } set { } }
+        public DateTime UsedTime => DateTime.Now;
     }
 }

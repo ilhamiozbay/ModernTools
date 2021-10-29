@@ -14,9 +14,10 @@ namespace Core.ElasticSearch
         public ElasticSearchService(ElasticClientProvider provider)
         {
             _provider = provider;
-            _client = provider.ElasticClient;
+            _client = _provider.ElasticClient;
         }
 
+        //Elastic üzerinde Indexden bağımız Document atmaya yarar. Yoksa Index yaratır.
         public void CheckExistsAndInsertLog(T logModel, string indexName)
         {
             if (!_client.Indices.Exists(indexName).Exists)
@@ -36,6 +37,7 @@ namespace Core.ElasticSearch
             IndexResponse responseIndex = _client.Index<T>(logModel, idx => idx.Index(indexName));
         }
 
+        //Elastic'in, "audit_log" index'i üzerinden, IAuditable interface'inden türeyen sınıfların Update veye Delete'inde eski hallerinin saklandığı kayıtlarının sorgulanması için kullanılır.
         public IReadOnlyCollection<AuditLogModel> SearchAuditLog(ElasticAuditLogParameters auditLog, string indexName = "audit_log")
         {
             auditLog.BeginDate = auditLog.BeginDate ?? DateTime.Parse("1900-01-01");
@@ -64,6 +66,7 @@ namespace Core.ElasticSearch
             return response.Documents;
         }
 
+        //Elastic'in, "audit_log" index'i üzerinden, IAuditable interface'inden türeyen sınıfların Update veye Delete'inde eski hallerinin saklandığı kayıtlarının "Content" yani içinde geçen text ifadeye göre sorgulanması için kullanılır. Elastic'in esas gücü buradadır.
         public IReadOnlyCollection<AuditLogModel> SearchAuditLogByContent(ElasticAuditLogParameters auditLog, string indexName = "audit_log")
         {
             auditLog.BeginDate = auditLog.BeginDate ?? DateTime.Parse("1900-01-01");

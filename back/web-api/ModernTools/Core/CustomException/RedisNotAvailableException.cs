@@ -8,12 +8,8 @@ namespace Core.CustomException
 
         public override string Message => "Redis is not available.";
 
-        public string ErrorCode
-        {
-            get
-            {
-                return _errorCode;
-            }
-        }
+        public string ErrorCode => _errorCode;
+            
+        
     }
 }
