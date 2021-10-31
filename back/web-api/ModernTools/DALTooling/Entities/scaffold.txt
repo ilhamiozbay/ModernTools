@@ -1,0 +1,1 @@
+﻿Scaffold-DBContext "Server=(localdb)\MSSQLLocalDB;Database=ModernTools;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -ContextDir "Entities\DbContexts" -Context ModernToolsContext  -Force -Project DALTooling -StartupProject DALTooling
